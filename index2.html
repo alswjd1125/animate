@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .carbox {
+   border-radius:5px;
+   border:5px solid rgb(243, 211, 67);
+   height:500px;
+   margin:0 auto;
+   overflow:hidden;
+   position:relative; 
+   width:80%;
+}
+.carbox .car {
+   background-repeat:no-repeat;
+   background-position:bottom;
+   bottom:100%;
+   height:300px;
+   position:absolute;
+   width:220px;
+}
+.carbox .car.num1 { 
+    background: url('images/sehun3.png');
+    background-repeat: no-repeat;
+}
+.carbox .car.num2 { 
+    background: url('images/sehun4.png');
+    background-repeat: no-repeat;
+}
+.btn{
+    background-color: rgb(250, 227, 153);
+    font-size: 40px;
+    border-radius: 5px;
+    border: 3px solid rgb(255, 203, 34);
+    width: 200px;
+    cursor: pointer;
+    
+}
+    </style>
+</head>
+<body>
+    
+    <div class="carbox">
+        <div style="text-align: center; margin-top: 10px;">
+            <button type="button" class="btn" onclick="go()">출동!</button>
+        </div>
+    </div>
+
+
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+   
+
+    function go() {
+            var el = $(
+                '<div class="car num' + Math.ceil(Math.random() * 3) + '"></div>').appendTo('.carbox');
+
+            var rnd1 = Math.round(Math.random() * 20);
+
+
+            el.animate({
+                'bottom': 0
+            }, {
+                duration: 2000,
+                easing: 'easeOutBounce',
+                queue: false
+            });
+            el.animate({'left':rnd1 + '%'}, {
+                duration : 2000,
+                easing : 'easeOutQuad',
+                complete : function(){
+                    el.animate({'left':'100%'}, 2000, 'easeInQuart', function(){
+                        el.remove();
+                });
+            }
+        });
+
+    }
+
+    </script>
+</body>
+</html>
